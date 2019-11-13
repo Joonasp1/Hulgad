@@ -40,20 +40,20 @@ def arvutama():   #Kustutab akna ja kuvab uue akna. Kõik uue akna tegevused on 
 hulk = set()
 raam = Tk()
 raam.title("Hulkade sisestamine")
-raam.geometry("300x100")
+raam.geometry("400x200")
 
 silt = ttk.Label(raam, text="Sisesta hulga element")
 silt.place(x=5, y=5)
 
 hulk1 = ttk.Entry(raam)
-hulk1.place(x=70, y=5, width=150)
+hulk1.place(x=250, y=5, width=150)
 
 hulgad = []
 nupp = ttk.Button(raam, text="Lisa", command=lisa)
-nupp.place(x=70, y=40, width=50)
+nupp.place(x=100, y=40, width=50)
 
 jarg = ttk.Button(raam, text="Järgmine", command=järgmine)
 jarg.place(x=150, y=40, width=100)
 
 arvuta = ttk.Button(raam, text="Arvutama", command=arvutama)
-arvuta.place(x=100, y=75, width=75)
+arvuta.place(x=100, y=75, width=100)
