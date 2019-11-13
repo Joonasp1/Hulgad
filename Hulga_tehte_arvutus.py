@@ -1,0 +1,5 @@
+print("[Legend: '&'-ühisosa; '|'-ühend; '-'-hulkade vahe; '^'-sümmeetriline vahe]")
+print("Hulk ümbritse loogeliste sulgudega (näiteks {1,2,4,'a','c'})")
+print("Prioriteetide määramiseks kasutage sulge")
+Hulgatehe=(eval(input("Sisestage hulgad ja nende tehted: ")))
+print(a)
