@@ -53,8 +53,10 @@ def arvutama():   #Kustutab akna ja kuvab uue akna. Kõik uue akna tegevused on 
     arvutaraam.title("Lausearvutused")
     arvutaraam.geometry("400x400")
     raam.destroy()
+    arvuinfo = ttk.Label(arvutaraam, text="Lausearvutuste kirjutamisel kujuta hulgad numbritega alustades 1-st")
+    arvuinfo.place(x=20,y=5)
     väli = ttk.Label(arvutaraam, text="Sisesta hulgatehe")
-    väli.place(x=5, y=5)
+    väli.place(x=20, y=55)
     info = ttk.Label(arvutaraam, text=""" KASUTA JÄRGMISEID SÜMBOLEID:
 •in on hulga element
 • not in ei ole hulga element
@@ -71,31 +73,31 @@ def arvutama():   #Kustutab akna ja kuvab uue akna. Kõik uue akna tegevused on 
     info.place(x=10,y=150)
     global arvut
     arvut = ttk.Entry(arvutaraam)
-    arvut.place(x=150, y=5, width=150)
+    arvut.place(x=150, y=55, width=150)
     lausearvutus = ttk.Button(arvutaraam, text="Arvuta", command=kuvaarvutus)
-    lausearvutus.place(x=150, y=50, width=100)
+    lausearvutus.place(x=150, y=100, width=100)
     global minuhulgad
     minuhulgad = ttk.Button(arvutaraam, text="Minu hulgad", command=minuhulgad)
-    minuhulgad.place(x= 30, y=50, width=100)
+    minuhulgad.place(x= 30, y=100, width=100)
    
 hulk = set()
 raam = Tk()
 raam.title("Hulkade sisestamine")
-raam.geometry("400x200")
+raam.geometry("200x125")
 
+harv = 0
 silt = ttk.Label(raam, text="Sisesta hulga element")
 silt.place(x=5, y=5)
 
 hulk1 = ttk.Entry(raam)
-hulk1.place(x=250, y=5, width=150)
-harv = 0
+hulk1.place(x=140, y=5, width=50)
 
 hulgad = []
 nupp = ttk.Button(raam, text="Lisa", command=lisa)
-nupp.place(x=100, y=40, width=50)
+nupp.place(x=10, y=40, width=50)
 
-jarg = ttk.Button(raam, text="Järgmine", command=järgmine)
-jarg.place(x=150, y=40, width=100)
+jarg = ttk.Button(raam, text="Uus hulk", command=järgmine)
+jarg.place(x=100, y=40, width=100)
 
 arvuta = ttk.Button(raam, text="Arvutama", command=arvutama)
-arvuta.place(x=100, y=75, width=100)
+arvuta.place(x=50, y=75, width=100)
