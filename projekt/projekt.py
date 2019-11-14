@@ -32,7 +32,7 @@ def kuvaarvutus():
 def minuhulgad():
     minuraam = Tk()
     minuraam.title("Hulga leidmine")
-    minuraam.geometry("250x100")
+    minuraam.geometry("300x100")
     mitu = ttk.Label(minuraam, text="Sul on " + str(harv) + " hulka")
     mitu.place(x=75, y=10)
     global mitmes
@@ -51,9 +51,9 @@ def vaatahulk():
 def arvutama():   #Kustutab akna ja kuvab uue akna. Kõik uue akna tegevused on funktsiooni sees
     arvutaraam = Tk()
     arvutaraam.title("Lausearvutused")
-    arvutaraam.geometry("400x400")
+    arvutaraam.geometry("500x600")
     raam.destroy()
-    arvuinfo = ttk.Label(arvutaraam, text="Lausearvutuste kirjutamisel kujuta hulgad numbritega alustades 1-st")
+    arvuinfo = ttk.Label(arvutaraam, text="Lausearvutuste kirjutamisel kujuta hulgad numbritega\nalustades 1-st. (Näiteks 1&2)\n")
     arvuinfo.place(x=20,y=5)
     väli = ttk.Label(arvutaraam, text="Sisesta hulgatehe")
     väli.place(x=20, y=55)
@@ -73,7 +73,7 @@ def arvutama():   #Kustutab akna ja kuvab uue akna. Kõik uue akna tegevused on 
     info.place(x=10,y=150)
     global arvut
     arvut = ttk.Entry(arvutaraam)
-    arvut.place(x=150, y=55, width=150)
+    arvut.place(x=200, y=55, width=150)
     lausearvutus = ttk.Button(arvutaraam, text="Arvuta", command=kuvaarvutus)
     lausearvutus.place(x=150, y=100, width=100)
     global minuhulgad
@@ -83,21 +83,21 @@ def arvutama():   #Kustutab akna ja kuvab uue akna. Kõik uue akna tegevused on 
 hulk = set()
 raam = Tk()
 raam.title("Hulkade sisestamine")
-raam.geometry("200x125")
+raam.geometry("275x125")
 
 harv = 0
 silt = ttk.Label(raam, text="Sisesta hulga element")
 silt.place(x=5, y=5)
 
 hulk1 = ttk.Entry(raam)
-hulk1.place(x=140, y=5, width=50)
+hulk1.place(x=200, y=5, width=50)
 
 hulgad = []
 nupp = ttk.Button(raam, text="Lisa", command=lisa)
-nupp.place(x=10, y=40, width=50)
+nupp.place(x=75, y=40, width=50)
 
 jarg = ttk.Button(raam, text="Uus hulk", command=järgmine)
-jarg.place(x=100, y=40, width=100)
+jarg.place(x=125, y=40, width=100)
 
 arvuta = ttk.Button(raam, text="Arvutama", command=arvutama)
-arvuta.place(x=50, y=75, width=100)
+arvuta.place(x=100, y=75, width=100)

@@ -46,7 +46,7 @@ silt = ttk.Label(raam, text="Sisesta hulga element")
 silt.place(x=5, y=5)
 
 hulk1 = ttk.Entry(raam)
-hulk1.place(x=250, y=5, width=150)
+hulk1.place(x=190, y=5, width=150)
 
 hulgad = []
 nupp = ttk.Button(raam, text="Lisa", command=lisa)
