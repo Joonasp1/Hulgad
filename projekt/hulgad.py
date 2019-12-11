@@ -6,24 +6,54 @@ from tkinter import ttk
 from tkinter import messagebox
 
 def joonista_venn():
-    if len(vhulgad) < 2:
-        messagebox.showinfo(message="Sisesta vähemalt 2 hulka")
+    if not (len(vhulgad)==2 or len(vhulgad)==3):
+        messagebox.showinfo(message="Sisesta kaht või kolme hulka")
         return
     if len(vhulgad) == 2:
         venn = venn2([vhulgad[0],vhulgad[1]], ('Esimene hulk', 'Teine hulk'))
-        venn.get_label_by_id('100').set_text('\n'.join(vhulgad[0]-vhulgad[1]))
-        venn.get_label_by_id('110').set_text('\n'.join(vhulgad[0]&vhulgad[1]))
-        venn.get_label_by_id('010').set_text('\n'.join(vhulgad[1]-vhulgad[0]))
+        try:
+            venn.get_label_by_id('100').set_text('\n'.join(vhulgad[0]-vhulgad[1]))
+        except:
+            pass
+        try:
+            venn.get_label_by_id('110').set_text('\n'.join(vhulgad[0]&vhulgad[1]))
+        except:
+            pass
+        try:
+            venn.get_label_by_id('010').set_text('\n'.join(vhulgad[1]-vhulgad[0]))
+        except:
+            pass
         
     else:    
         venn=venn3([vhulgad[0], vhulgad[1], vhulgad[2]], ('Esimene hulk', 'Teine hulk', 'Kolmas hulk'))
-        venn.get_label_by_id('111').set_text('\n'.join(vhulgad[0]&vhulgad[1]&vhulgad[2]))
-        venn.get_label_by_id('100').set_text('\n'.join(vhulgad[0]-vhulgad[1]-vhulgad[2]))
-        venn.get_label_by_id('110').set_text('\n'.join(vhulgad[0]&vhulgad[1]-vhulgad[2]))
-        venn.get_label_by_id('010').set_text('\n'.join(vhulgad[1]-vhulgad[2]-vhulgad[0]))
-        venn.get_label_by_id('101').set_text('\n'.join(vhulgad[0]&vhulgad[2]-vhulgad[1]))
-        venn.get_label_by_id('011').set_text('\n'.join(vhulgad[1]&vhulgad[2]-vhulgad[0]))
-        venn.get_label_by_id('001').set_text('\n'.join(vhulgad[2]-vhulgad[1]-vhulgad[0]))
+        try:
+            venn.get_label_by_id('111').set_text('\n'.join(vhulgad[0]&vhulgad[1]&vhulgad[2]))
+        except:
+            pass
+        try:
+            venn.get_label_by_id('100').set_text('\n'.join(vhulgad[0]-vhulgad[1]-vhulgad[2]))
+        except:
+            pass
+        try:
+            venn.get_label_by_id('110').set_text('\n'.join(vhulgad[0]&vhulgad[1]-vhulgad[2]))
+        except:
+            pass
+        try:
+            venn.get_label_by_id('010').set_text('\n'.join(vhulgad[1]-vhulgad[2]-vhulgad[0]))
+        except:
+            pass
+        try:
+            venn.get_label_by_id('101').set_text('\n'.join(vhulgad[0]&vhulgad[2]-vhulgad[1]))
+        except:
+            pass
+        try:
+            venn.get_label_by_id('011').set_text('\n'.join(vhulgad[1]&vhulgad[2]-vhulgad[0]))
+        except:
+            pass
+        try:
+            venn.get_label_by_id('001').set_text('\n'.join(vhulgad[2]-vhulgad[1]-vhulgad[0]))
+        except:
+            pass
     
     plt.show()
 
@@ -49,7 +79,7 @@ def Venn():
     vhulk = set()
     vraam = Tk()
     vraam.title("Hulkade sisestamine")
-    vraam.geometry("275x125")
+    vraam.geometry("300x125")
 
     vsilt = ttk.Label(vraam, text="Sisesta hulga element")
     vsilt.place(x=5, y=5)
@@ -60,14 +90,14 @@ def Venn():
 
     global vhulgad
     vhulgad = []
-    nupp = ttk.Button(vraam, text="Lisa", command=vlisa)
-    nupp.place(x=75, y=40, width=50)
+    nupp = ttk.Button(vraam, text="Lisa element", command=vlisa)
+    nupp.place(x=25, y=40, width=125)
 
-    jarg = ttk.Button(vraam, text="Uus hulk", command=vjärgmine)
-    jarg.place(x=125, y=40, width=100)
+    jarg = ttk.Button(vraam, text="Salvesta hulk", command=vjärgmine)
+    jarg.place(x=150, y=40, width=125)
 
     kuva = ttk.Button(vraam, text="Kuva diagramm", command=joonista_venn)
-    kuva.place(x=100, y=75, width=100)
+    kuva.place(x=100, y=75, width=150)
     
 def lisa():
     hulk.add(hulk1.get())
@@ -99,17 +129,19 @@ def kuvaarvutus():
 def minuhulgad():
     minuraam = Tk()
     minuraam.title("Hulga leidmine")
-    minuraam.geometry("300x100")
+    minuraam.geometry("350x135")
     mitu = ttk.Label(minuraam, text="Sul on " + str(harv) + " hulka")
-    mitu.place(x=75, y=10)
+    mitu.place(x=100, y=10)
+    legend = ttk.Label(minuraam, text="Näiteks sisesta ""1"", kui soovid esimest hulka.")
+    legend.place(x=0, y=100)
     global mitmes
     mitmes = ttk.Entry(minuraam)
-    mitmes.place(x=200, y=35, width=25)
+    mitmes.place(x=115, y=67, width=25)
     küsimus = ttk.Label(minuraam, text="Mitmendat hulka soovid näha?")
-    küsimus.place(x=10, y = 35)
+    küsimus.place(x=50, y = 35)
     global vaatahulk
     vaatahulk = ttk.Button(minuraam, text="Vaata", command=vaatahulk)
-    vaatahulk.place(x=150, y=60, width=100)
+    vaatahulk.place(x=150, y=65, width=100)
     
 def vaatahulk():
     näehulk = hulgad[int(mitmes.get()) - 1]
@@ -145,14 +177,14 @@ def arvutama():   #Kustutab akna ja kuvab uue akna. Kõik uue akna tegevused on 
     lausearvutus.place(x=150, y=100, width=100)
     global minuhulgad
     minuhulgad = ttk.Button(arvutaraam, text="Minu hulgad", command=minuhulgad)
-    minuhulgad.place(x= 30, y=100, width=100)
+    minuhulgad.place(x= 30, y=100, width=115)
 
 def lausearvutus():
     kraam.destroy()
     global raam
     raam = Tk()
     raam.title("Hulkade sisestamine")
-    raam.geometry("275x125")
+    raam.geometry("300x125")
     global hulk
     hulk = set()
     silt = ttk.Label(raam, text="Sisesta hulga element")
@@ -166,11 +198,11 @@ def lausearvutus():
 
     global hulgad
     hulgad = []
-    nupp = ttk.Button(raam, text="Lisa", command=lisa)
-    nupp.place(x=75, y=40, width=50)
+    nupp = ttk.Button(raam, text="Lisa element", command=lisa)
+    nupp.place(x=25, y=40, width=125)
 
-    jarg = ttk.Button(raam, text="Uus hulk", command=järgmine)
-    jarg.place(x=125, y=40, width=100)
+    jarg = ttk.Button(raam, text="Salvesta hulk", command=järgmine)
+    jarg.place(x=150, y=40, width=125)
 
     arvuta = ttk.Button(raam, text="Arvutama", command=arvutama)
     arvuta.place(x=100, y=75, width=100)
@@ -179,14 +211,14 @@ def lausearvutus():
 global kraam
 kraam = Tk()
 kraam.title("Valik")
-kraam.geometry("300x200")
+kraam.geometry("400x200")
 
 vali = ttk.Label(kraam, text="Vali alamprogramm")
 vali.config(font=("Times new roman",18))
 vali.place(x=60,y=10)
 
 lausevalik = ttk.Button(kraam, text="Lausearvutused", width=15, command=lausearvutus)
-lausevalik.place(x=100,y=75)
+lausevalik.place(x=125,y=75)
 
 vennvalik = ttk.Button(kraam, text="Venni diagramm", width= 15, command=Venn)
-vennvalik.place(x=100,y=125)
+vennvalik.place(x=125,y=125)
