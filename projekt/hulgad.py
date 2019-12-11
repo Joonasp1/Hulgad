@@ -27,12 +27,6 @@ def joonista_venn():
     
     plt.show()
 
-#Testimiseks
-"""A = {"1","2","3","4","5"}
-B = {"4","5","6","7"}
-C = {"1","7","9","5"}
-joonista_venn(A,B,C)"""
-
 def vlisa():
     vhulk.add(vhulk1.get())
     print(vhulk)
@@ -44,11 +38,13 @@ def vjärgmine():
         return
     else:
         global vhulk
+        messagebox.showinfo(message="Lisasid hulga " + str(vhulk))
         vhulgad.append(vhulk)
         vhulk = set()
         print(vhulgad)
 
 def Venn():
+    kraam.destroy()
     global vhulk
     vhulk = set()
     vraam = Tk()
@@ -79,11 +75,12 @@ def lisa():
 
 def järgmine():
     global hulk
+    global harv
+    harv += 1
+    messagebox.showinfo(message="Lisasid hulga nr." + str(harv) + " : " + str(hulk))
     hulgad.append(hulk)
     hulk = set()
     print(hulgad)
-    global harv
-    harv += 1
 
 def kuvaarvutus():
     evalsõne = ""
@@ -151,16 +148,17 @@ def arvutama():   #Kustutab akna ja kuvab uue akna. Kõik uue akna tegevused on 
     minuhulgad.place(x= 30, y=100, width=100)
 
 def lausearvutus():
+    kraam.destroy()
     global raam
     raam = Tk()
     raam.title("Hulkade sisestamine")
     raam.geometry("275x125")
     global hulk
     hulk = set()
-    global harv
-    harv = 0
     silt = ttk.Label(raam, text="Sisesta hulga element")
     silt.place(x=5, y=5)
+    global harv
+    harv = 0
 
     global hulk1
     hulk1 = ttk.Entry(raam)
@@ -178,6 +176,7 @@ def lausearvutus():
     arvuta.place(x=100, y=75, width=100)
 
 
+global kraam
 kraam = Tk()
 kraam.title("Valik")
 kraam.geometry("300x200")
