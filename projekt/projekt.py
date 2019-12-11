@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
-
+from Venn import joonista_venn
 
 def lisa():
     hulk.add(hulk1.get())
@@ -29,20 +29,27 @@ def kuvaarvutus():
     vastus = eval(evalsõne)
     messagebox.showinfo(message="Vastus on " + str(vastus))
 
+def venni_D():
+    print(hulgad)
+    if len(hulgad)==2 or len(hulgad)==3:
+        joonista_venn(hulgad)
+    else:
+        print("Venni diagrammi saab teha kahe või kolme hulgaga.")
+
 def minuhulgad():
     minuraam = Tk()
     minuraam.title("Hulga leidmine")
-    minuraam.geometry("300x100")
+    minuraam.geometry("400x300")
     mitu = ttk.Label(minuraam, text="Sul on " + str(harv) + " hulka")
     mitu.place(x=75, y=10)
     global mitmes
     mitmes = ttk.Entry(minuraam)
-    mitmes.place(x=200, y=35, width=25)
+    mitmes.place(x=100, y=70, width=25)
     küsimus = ttk.Label(minuraam, text="Mitmendat hulka soovid näha?")
     küsimus.place(x=10, y = 35)
     global vaatahulk
     vaatahulk = ttk.Button(minuraam, text="Vaata", command=vaatahulk)
-    vaatahulk.place(x=150, y=60, width=100)
+    vaatahulk.place(x=150, y=70, width=100)
     
 def vaatahulk():
     näehulk = hulgad[int(mitmes.get()) - 1]
@@ -79,6 +86,9 @@ def arvutama():   #Kustutab akna ja kuvab uue akna. Kõik uue akna tegevused on 
     global minuhulgad
     minuhulgad = ttk.Button(arvutaraam, text="Minu hulgad", command=minuhulgad)
     minuhulgad.place(x= 30, y=100, width=100)
+    global Venni
+    Venni = ttk.Button(arvutaraam, text="Venni Diagramm", command=venni_D)
+    Venni.place(x= 270, y=100, width=150)
    
 hulk = set()
 raam = Tk()
