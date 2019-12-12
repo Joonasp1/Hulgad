@@ -7,7 +7,7 @@ from tkinter import messagebox
 
 def joonista_venn():
     if not (len(vhulgad)==2 or len(vhulgad)==3):
-        messagebox.showinfo(message="Sisesta kaht või kolme hulka")
+        messagebox.showinfo(message="Sisesta kaks või kolm hulka")
         return
     if len(vhulgad) == 2:
         venn = venn2([vhulgad[0],vhulgad[1]], ('Esimene hulk', 'Teine hulk'))
@@ -60,6 +60,7 @@ def joonista_venn():
 def vlisa():
     vhulk.add(vhulk1.get())
     print(vhulk)
+    hetkevhulk["text"]="Praegune hulk on " + str(vhulk)
 
 def vjärgmine():
     if len(vhulgad) == 3:
@@ -68,10 +69,11 @@ def vjärgmine():
         return
     else:
         global vhulk
-        messagebox.showinfo(message="Lisasid hulga " + str(vhulk))
         vhulgad.append(vhulk)
+        sinuvhulgad["text"] += "\n" + str(len(vhulgad)) + ". " + str(vhulk)
         vhulk = set()
         print(vhulgad)
+        hetkevhulk["text"]="Praegune hulk on tühi" 
 
 def Venn():
     kraam.destroy()
@@ -79,7 +81,7 @@ def Venn():
     vhulk = set()
     vraam = Tk()
     vraam.title("Hulkade sisestamine")
-    vraam.geometry("300x125")
+    vraam.geometry("300x200")
 
     vsilt = ttk.Label(vraam, text="Sisesta hulga element")
     vsilt.place(x=5, y=5)
@@ -99,21 +101,32 @@ def Venn():
     kuva = ttk.Button(vraam, text="Kuva diagramm", command=joonista_venn)
     kuva.place(x=100, y=75, width=150)
     
+    global hetkevhulk
+    hetkevhulk = ttk.Label(vraam, text="Praegune hulk on tühi")
+    hetkevhulk.place(x=30,y=100)
+    
+    global sinuvhulgad
+    sinuvhulgad = ttk.Label(vraam, text="Sinu hulgad on: ")
+    sinuvhulgad.place(x=50, y=125)
+    
 def lisa():
     hulk.add(hulk1.get())
     print(hulk)
-
+    hetkehulk["text"]="Praegune hulk on " + str(hulk)
+    
 def järgmine():
     global hulk
     global harv
     harv += 1
-    messagebox.showinfo(message="Lisasid hulga nr." + str(harv) + " : " + str(hulk))
+    sinuhulgad["text"] += "\n" + str(harv) + ". " + str(hulk)
     hulgad.append(hulk)
     hulk = set()
     print(hulgad)
+    hetkehulk["text"]="Praegune hulk on tühi" 
 
 def kuvaarvutus():
     evalsõne = ""
+    arvutused["text"] += "\n" + str(arvut.get())
     for sümbol in arvut.get():
         try:
             int(sümbol)
@@ -124,28 +137,17 @@ def kuvaarvutus():
             evalsõne += "hulgad[" + str(int(sümbol)-1) + "]"
             continue
     vastus = eval(evalsõne)
-    messagebox.showinfo(message="Vastus on " + str(vastus))
-
+    arvutused["text"] += " = " + str(vastus)
+    
 def minuhulgad():
     minuraam = Tk()
-    minuraam.title("Hulga leidmine")
-    minuraam.geometry("350x135")
-    mitu = ttk.Label(minuraam, text="Sul on " + str(harv) + " hulka")
-    mitu.place(x=100, y=10)
-    legend = ttk.Label(minuraam, text="Näiteks sisesta ""1"", kui soovid esimest hulka.")
-    legend.place(x=0, y=100)
-    global mitmes
-    mitmes = ttk.Entry(minuraam)
-    mitmes.place(x=115, y=67, width=25)
-    küsimus = ttk.Label(minuraam, text="Mitmendat hulka soovid näha?")
-    küsimus.place(x=50, y = 35)
-    global vaatahulk
-    vaatahulk = ttk.Button(minuraam, text="Vaata", command=vaatahulk)
-    vaatahulk.place(x=150, y=65, width=100)
+    minuraam.title("Minu hulgad")
+    minuraam.geometry("100x150")
+    hulgalist = ttk.Label(minuraam, text="Sinu hulgad on:")
+    hulgalist.place(x=20,y=10)
+    for i in range(len(hulgad)):
+        hulgalist["text"]+="\n" + str(i+1) + ". " + str(hulgad[i])
     
-def vaatahulk():
-    näehulk = hulgad[int(mitmes.get()) - 1]
-    messagebox.showinfo(message=str(näehulk))
 
 def arvutama():   #Kustutab akna ja kuvab uue akna. Kõik uue akna tegevused on funktsiooni sees
     arvutaraam = Tk()
@@ -157,8 +159,6 @@ def arvutama():   #Kustutab akna ja kuvab uue akna. Kõik uue akna tegevused on 
     väli = ttk.Label(arvutaraam, text="Sisesta hulgatehe")
     väli.place(x=20, y=55)
     info = ttk.Label(arvutaraam, text=""" KASUTA JÄRGMISEID SÜMBOLEID:
-•in on hulga element
-• not in ei ole hulga element
 • == on võrdne
 • != mittevõrdne
 • < on range alamhulk
@@ -178,13 +178,23 @@ def arvutama():   #Kustutab akna ja kuvab uue akna. Kõik uue akna tegevused on 
     global minuhulgad
     minuhulgad = ttk.Button(arvutaraam, text="Minu hulgad", command=minuhulgad)
     minuhulgad.place(x= 30, y=100, width=115)
+    
+    global arvutused
+    arvutused = ttk.Label(arvutaraam, text="Arvutused: ")
+    arvutused.place(x = 275, y = 100)
+    
+def kustutahulgad():
+    hulgad = []
+    hulk = set()
+    harv = 0
+    messagebox.showinfo(message="Hulgad on kustutatud. Saad alustada nullist")
 
 def lausearvutus():
     kraam.destroy()
     global raam
     raam = Tk()
     raam.title("Hulkade sisestamine")
-    raam.geometry("300x125")
+    raam.geometry("300x250")
     global hulk
     hulk = set()
     silt = ttk.Label(raam, text="Sisesta hulga element")
@@ -203,9 +213,17 @@ def lausearvutus():
 
     jarg = ttk.Button(raam, text="Salvesta hulk", command=järgmine)
     jarg.place(x=150, y=40, width=125)
-
+    
     arvuta = ttk.Button(raam, text="Arvutama", command=arvutama)
     arvuta.place(x=100, y=75, width=100)
+    
+    global hetkehulk
+    hetkehulk = ttk.Label(raam, text="Praegune hulk on tühi")
+    hetkehulk.place(x=30,y=100)
+    
+    global sinuhulgad
+    sinuhulgad = ttk.Label(raam, text="Sinu hulgad on: ")
+    sinuhulgad.place(x=50, y=125)
 
 
 global kraam
