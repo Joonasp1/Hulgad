@@ -81,7 +81,7 @@ def Venn():
     vhulk = set()
     vraam = Tk()
     vraam.title("Hulkade sisestamine")
-    vraam.geometry("300x200")
+    vraam.geometry("300x250")
 
     vsilt = ttk.Label(vraam, text="Sisesta hulga element")
     vsilt.place(x=5, y=5)
@@ -103,11 +103,11 @@ def Venn():
     
     global hetkevhulk
     hetkevhulk = ttk.Label(vraam, text="Praegune hulk on tühi")
-    hetkevhulk.place(x=30,y=100)
+    hetkevhulk.place(x=30,y=110)
     
     global sinuvhulgad
     sinuvhulgad = ttk.Label(vraam, text="Sinu hulgad on: ")
-    sinuvhulgad.place(x=50, y=125)
+    sinuvhulgad.place(x=50, y=137)
     
 def lisa():
     hulk.add(hulk1.get())
@@ -219,11 +219,11 @@ def lausearvutus():
     
     global hetkehulk
     hetkehulk = ttk.Label(raam, text="Praegune hulk on tühi")
-    hetkehulk.place(x=30,y=100)
+    hetkehulk.place(x=30,y=110)
     
     global sinuhulgad
     sinuhulgad = ttk.Label(raam, text="Sinu hulgad on: ")
-    sinuhulgad.place(x=50, y=125)
+    sinuhulgad.place(x=50, y=137)
 
 
 global kraam
