@@ -6,113 +6,66 @@ from tkinter import ttk
 from tkinter import messagebox
 
 def joonista_venn():
-    if not (len(vhulgad)==2 or len(vhulgad)==3):
+    if len(hulgad) < 2 :
         messagebox.showinfo(message="Sisesta kaks või kolm hulka")
         return
-    if len(vhulgad) == 2:
-        venn = venn2([vhulgad[0],vhulgad[1]], ('Esimene hulk', 'Teine hulk'))
+    elif len(hulgad) > 3:
+        messagebox.showinfo(message="See programm ei toeta üle kolme hulga diagramme")
+    if len(hulgad) == 2:
+        venn = venn2([hulgad[0],hulgad[1]], ('Esimene hulk', 'Teine hulk'))
         try:
-            venn.get_label_by_id('100').set_text('\n'.join(vhulgad[0]-vhulgad[1]))
+            venn.get_label_by_id('100').set_text('\n'.join(hulgad[0]-hulgad[1]))
         except:
             pass
         try:
-            venn.get_label_by_id('110').set_text('\n'.join(vhulgad[0]&vhulgad[1]))
+            venn.get_label_by_id('110').set_text('\n'.join(hulgad[0]&hulgad[1]))
         except:
             pass
         try:
-            venn.get_label_by_id('010').set_text('\n'.join(vhulgad[1]-vhulgad[0]))
+            venn.get_label_by_id('010').set_text('\n'.join(hulgad[1]-hulgad[0]))
         except:
             pass
         
     else:    
-        venn=venn3([vhulgad[0], vhulgad[1], vhulgad[2]], ('Esimene hulk', 'Teine hulk', 'Kolmas hulk'))
+        venn=venn3([hulgad[0], hulgad[1], hulgad[2]], ('Esimene hulk', 'Teine hulk', 'Kolmas hulk'))
         try:
-            venn.get_label_by_id('111').set_text('\n'.join(vhulgad[0]&vhulgad[1]&vhulgad[2]))
+            venn.get_label_by_id('111').set_text('\n'.join(hulgad[0]&hulgad[1]&hulgad[2]))
         except:
             pass
         try:
-            venn.get_label_by_id('100').set_text('\n'.join(vhulgad[0]-vhulgad[1]-vhulgad[2]))
+            venn.get_label_by_id('100').set_text('\n'.join(hulgad[0]-hulgad[1]-hulgad[2]))
         except:
             pass
         try:
-            venn.get_label_by_id('110').set_text('\n'.join(vhulgad[0]&vhulgad[1]-vhulgad[2]))
+            venn.get_label_by_id('110').set_text('\n'.join(hulgad[0]&hulgad[1]-hulgad[2]))
         except:
             pass
         try:
-            venn.get_label_by_id('010').set_text('\n'.join(vhulgad[1]-vhulgad[2]-vhulgad[0]))
+            venn.get_label_by_id('010').set_text('\n'.join(hulgad[1]-hulgad[2]-hulgad[0]))
         except:
             pass
         try:
-            venn.get_label_by_id('101').set_text('\n'.join(vhulgad[0]&vhulgad[2]-vhulgad[1]))
+            venn.get_label_by_id('101').set_text('\n'.join(hulgad[0]&hulgad[2]-hulgad[1]))
         except:
             pass
         try:
-            venn.get_label_by_id('011').set_text('\n'.join(vhulgad[1]&vhulgad[2]-vhulgad[0]))
+            venn.get_label_by_id('011').set_text('\n'.join(hulgad[1]&hulgad[2]-hulgad[0]))
         except:
             pass
         try:
-            venn.get_label_by_id('001').set_text('\n'.join(vhulgad[2]-vhulgad[1]-vhulgad[0]))
+            venn.get_label_by_id('001').set_text('\n'.join(hulgad[2]-hulgad[1]-hulgad[0]))
         except:
             pass
     
     plt.show()
 
-def vlisa():
-    vhulk.add(vhulk1.get())
-    print(vhulk)
-    hetkevhulk["text"]="Praegune hulk on " + str(vhulk)
 
-def vjärgmine():
-    if len(vhulgad) == 3:
-        messagebox.showinfo(message="See programm ei toeta üle 3 hulga Venni diagramme")
-        Venn()
-        return
-    else:
-        global vhulk
-        vhulgad.append(vhulk)
-        sinuvhulgad["text"] += "\n" + str(len(vhulgad)) + ". " + str(vhulk)
-        vhulk = set()
-        print(vhulgad)
-        hetkevhulk["text"]="Praegune hulk on tühi" 
-
-def Venn():
-    kraam.destroy()
-    global vhulk
-    vhulk = set()
-    vraam = Tk()
-    vraam.title("Hulkade sisestamine")
-    vraam.geometry("300x250")
-
-    vsilt = ttk.Label(vraam, text="Sisesta hulga element")
-    vsilt.place(x=5, y=5)
-
-    global vhulk1
-    vhulk1 = ttk.Entry(vraam)
-    vhulk1.place(x=200, y=5, width=50)
-
-    global vhulgad
-    vhulgad = []
-    nupp = ttk.Button(vraam, text="Lisa element", command=vlisa)
-    nupp.place(x=25, y=40, width=125)
-
-    jarg = ttk.Button(vraam, text="Salvesta hulk", command=vjärgmine)
-    jarg.place(x=150, y=40, width=125)
-
-    kuva = ttk.Button(vraam, text="Kuva diagramm", command=joonista_venn)
-    kuva.place(x=100, y=75, width=150)
-    
-    global hetkevhulk
-    hetkevhulk = ttk.Label(vraam, text="Praegune hulk on tühi")
-    hetkevhulk.place(x=30,y=110)
-    
-    global sinuvhulgad
-    sinuvhulgad = ttk.Label(vraam, text="Sinu hulgad on: ")
-    sinuvhulgad.place(x=50, y=137)
     
 def lisa():
     hulk.add(hulk1.get())
     print(hulk)
     hetkehulk["text"]="Praegune hulk on " + str(hulk)
+    hulk1.delete(0, END)
     
 def järgmine():
     global hulk
@@ -142,7 +95,7 @@ def kuvaarvutus():
 def minuhulgad():
     minuraam = Tk()
     minuraam.title("Minu hulgad")
-    minuraam.geometry("100x150")
+    minuraam.geometry("200x200")
     hulgalist = ttk.Label(minuraam, text="Sinu hulgad on:")
     hulgalist.place(x=20,y=10)
     for i in range(len(hulgad)):
@@ -150,6 +103,7 @@ def minuhulgad():
     
 
 def arvutama():   #Kustutab akna ja kuvab uue akna. Kõik uue akna tegevused on funktsiooni sees
+    global arvutaraam
     arvutaraam = Tk()
     arvutaraam.title("Lausearvutused")
     arvutaraam.geometry("500x600")
@@ -179,18 +133,37 @@ def arvutama():   #Kustutab akna ja kuvab uue akna. Kõik uue akna tegevused on 
     minuhulgad = ttk.Button(arvutaraam, text="Minu hulgad", command=minuhulgad)
     minuhulgad.place(x= 30, y=100, width=115)
     
+    tagasinupp = ttk.Button(arvutaraam, text="Tagasi (kustutab hulgad)", command=tagasi)
+    tagasinupp.place(x=350,y=10)
+
     global arvutused
     arvutused = ttk.Label(arvutaraam, text="Arvutused: ")
-    arvutused.place(x = 275, y = 100)
+    arvutused.place(x = 275, y = 100, width=150)
     
 def kustutahulgad():
+    global hulgad
     hulgad = []
+    global hulk
     hulk = set()
+    global harv
     harv = 0
+    global hetkehulk
+    hetkehulk["text"] = "Praegune hulk on tühi"
+    global sinuhulgad
+    sinuhulgad["text"] = "Sinu hulgad on:"
     messagebox.showinfo(message="Hulgad on kustutatud. Saad alustada nullist")
 
-def lausearvutus():
-    kraam.destroy()
+def tagasi():
+    arvutaraam.destroy()
+    global hulgad
+    hulgad = []
+    global hulk
+    hulk = set()
+    global harv
+    harv = 0
+    main()
+
+def main():
     global raam
     raam = Tk()
     raam.title("Hulkade sisestamine")
@@ -213,30 +186,23 @@ def lausearvutus():
 
     jarg = ttk.Button(raam, text="Salvesta hulk", command=järgmine)
     jarg.place(x=150, y=40, width=125)
-    
+
     arvuta = ttk.Button(raam, text="Arvutama", command=arvutama)
-    arvuta.place(x=100, y=75, width=100)
-    
+    arvuta.place(x=25, y=75, width=100)
+
+    vdiag = ttk.Button(raam, text="Venni diagramm", command=joonista_venn)
+    vdiag.place(x=150, y=75, width=100)
+
+    kustuta = ttk.Button(raam, text="Kustuta hulgad", command=kustutahulgad)
+    kustuta.place(x=100, y=110)
+
     global hetkehulk
     hetkehulk = ttk.Label(raam, text="Praegune hulk on tühi")
-    hetkehulk.place(x=30,y=110)
-    
+    hetkehulk.place(x=30,y=150)
+
     global sinuhulgad
     sinuhulgad = ttk.Label(raam, text="Sinu hulgad on: ")
-    sinuhulgad.place(x=50, y=137)
+    sinuhulgad.place(x=50, y=177)
 
-
-global kraam
-kraam = Tk()
-kraam.title("Valik")
-kraam.geometry("400x200")
-
-vali = ttk.Label(kraam, text="Vali alamprogramm")
-vali.config(font=("Times new roman",18))
-vali.place(x=60,y=10)
-
-lausevalik = ttk.Button(kraam, text="Lausearvutused", width=15, command=lausearvutus)
-lausevalik.place(x=125,y=75)
-
-vennvalik = ttk.Button(kraam, text="Venni diagramm", width= 15, command=Venn)
-vennvalik.place(x=125,y=125)
+if __name__ == '__main__':
+    main()
