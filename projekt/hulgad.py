@@ -134,7 +134,7 @@ def arvutama():   #Kustutab akna ja kuvab uue akna. Kõik uue akna tegevused on 
     minuhulgad.place(x= 30, y=100, width=115)
     
     tagasinupp = ttk.Button(arvutaraam, text="Tagasi (kustutab hulgad)", command=tagasi)
-    tagasinupp.place(x=350,y=10)
+    tagasinupp.place(x=250,y=450)
 
     global arvutused
     arvutused = ttk.Label(arvutaraam, text="Arvutused: ")
@@ -191,7 +191,7 @@ def main():
     arvuta.place(x=25, y=75, width=100)
 
     vdiag = ttk.Button(raam, text="Venni diagramm", command=joonista_venn)
-    vdiag.place(x=150, y=75, width=100)
+    vdiag.place(x=125, y=75, width=150)
 
     kustuta = ttk.Button(raam, text="Kustuta hulgad", command=kustutahulgad)
     kustuta.place(x=100, y=110)
