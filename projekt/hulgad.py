@@ -106,7 +106,7 @@ def arvutama():   #Kustutab akna ja kuvab uue akna. Kõik uue akna tegevused on 
     global arvutaraam
     arvutaraam = Tk()
     arvutaraam.title("Lausearvutused")
-    arvutaraam.geometry("500x600")
+    arvutaraam.geometry("500x500")
     raam.destroy()
     arvuinfo = ttk.Label(arvutaraam, text="Lausearvutuste kirjutamisel kujuta hulgad numbritega\nalustades 1-st. (Näiteks 1&2)\n")
     arvuinfo.place(x=20,y=5)
@@ -134,7 +134,7 @@ def arvutama():   #Kustutab akna ja kuvab uue akna. Kõik uue akna tegevused on 
     minuhulgad.place(x= 30, y=100, width=115)
     
     tagasinupp = ttk.Button(arvutaraam, text="Tagasi (kustutab hulgad)", command=tagasi)
-    tagasinupp.place(x=250,y=450)
+    tagasinupp.place(x=10,y=450)
 
     global arvutused
     arvutused = ttk.Label(arvutaraam, text="Arvutused: ")
@@ -167,7 +167,7 @@ def main():
     global raam
     raam = Tk()
     raam.title("Hulkade sisestamine")
-    raam.geometry("300x250")
+    raam.geometry("300x350")
     global hulk
     hulk = set()
     silt = ttk.Label(raam, text="Sisesta hulga element")
@@ -194,7 +194,7 @@ def main():
     vdiag.place(x=125, y=75, width=150)
 
     kustuta = ttk.Button(raam, text="Kustuta hulgad", command=kustutahulgad)
-    kustuta.place(x=100, y=110)
+    kustuta.place(x=10, y=300)
 
     global hetkehulk
     hetkehulk = ttk.Label(raam, text="Praegune hulk on tühi")
